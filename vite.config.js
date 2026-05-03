@@ -2,9 +2,14 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { fileURLToPath, URL } from 'node:url'
 
-/** Sur GitHub Actions, GITHUB_REPOSITORY=owner/nom-du-repo → base /nom-du-repo/ */
+/**
+ * Sur GitHub Actions :
+ * - Dépôt projet classique (ex: owner/mon-site)  -> base /mon-site/
+ * - Dépôt user/org pages (ex: owner/owner.github.io) -> base /
+ */
 const repoSlug = process.env.GITHUB_REPOSITORY?.split('/')?.[1]
-const base = repoSlug ? `/${repoSlug}/` : '/'
+const isUserOrOrgPagesRepo = Boolean(repoSlug && repoSlug.endsWith('.github.io'))
+const base = repoSlug && !isUserOrOrgPagesRepo ? `/${repoSlug}/` : '/'
 const faviconHref = `${base}favicon.svg`
 
 export default defineConfig({
