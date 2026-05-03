@@ -6,8 +6,11 @@
 
 :root {
   --color-orange: #ff7a00;
+  /* Survol / texte orange assombri — même base que --color-orange */
+  --color-orange-deep: color-mix(in srgb, var(--color-orange) 78%, #292524);
   --color-orange-soft: rgba(255, 122, 0, 0.12);
   --color-blue: #74a2ff;
+  --color-blue-deep: color-mix(in srgb, var(--color-blue) 72%, #292524);
   --color-blue-soft: rgba(116, 162, 255, 0.14);
   --color-text: #1c1917;
   --color-text-muted: #57534e;
@@ -66,6 +69,7 @@ button {
 }
 
 #app {
+  position: relative;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

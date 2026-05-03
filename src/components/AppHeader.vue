@@ -54,7 +54,7 @@ const headerClass = computed(() => ({
 
     <div class="app-header__inner">
 
-      <RouterLink to="/" class="app-header__brand">
+      <RouterLink to="/" class="app-header__brand" aria-label="Accueil — Fiona Climent, L’arbre des voix">
 
         <img class="app-header__logo" :src="publicAsset('/image/g499.svg')" alt="" width="44" height="44" />
 

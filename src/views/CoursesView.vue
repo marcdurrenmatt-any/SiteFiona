@@ -20,7 +20,42 @@ import CoursesCenterTree from '../components/CoursesCenterTree.vue'
         >
           <div class="course-panel__accent" aria-hidden="true" />
           <div class="course-panel__inner">
-            <p class="course-panel__label">Parcours piano</p>
+            <div class="course-panel__glyph-row" aria-hidden="true">
+              <span class="course-panel__glyph course-panel__glyph--piano">
+                <svg
+                  class="course-panel__glyph-svg course-panel__glyph-svg--piano"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill="currentColor"
+                    fill-opacity="0.14"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linejoin="round"
+                    d="M 3.65 18.85 V 10.05 H 7.9 C 10.35 6 14.55 5.45 17.95 7.15 C 19.55 7.95 20.35 10 20.35 11.65 V 18.85 H 3.65 Z"
+                  />
+                  <path
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.25"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-opacity="0.42"
+                    d="M 7.9 10.05 C 11.55 6.95 16.35 6.85 19.15 9.35"
+                  />
+                  <path
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.25"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-opacity="0.28"
+                    d="M 4.75 12.35 H 6.95 M 4.75 14.55 H 6.95 M 4.75 16.65 H 6.95"
+                  />
+                </svg>
+              </span>
+            </div>
             <h2 class="course-panel__heading">Cours de piano</h2>
             <p class="course-panel__text">
               Initiation, lecture à vue, harmonisation et travail du répertoire classique ou contemporain. Les séances
@@ -61,7 +96,50 @@ import CoursesCenterTree from '../components/CoursesCenterTree.vue'
         >
           <div class="course-panel__accent" aria-hidden="true" />
           <div class="course-panel__inner">
-            <p class="course-panel__label">Parcours chant</p>
+            <div class="course-panel__glyph-row" aria-hidden="true">
+              <span class="course-panel__glyph course-panel__glyph--chant">
+                <svg
+                  class="course-panel__glyph-svg course-panel__glyph-svg--chant"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill="currentColor"
+                    fill-opacity="0.14"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linejoin="round"
+                    d="M12 4.25a3.35 3.35 0 0 0-3.35 3.35v4.4a3.35 3.35 0 0 0 6.7 0v-4.4A3.35 3.35 0 0 0 12 4.25Z"
+                  />
+                  <path
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 15.35v2.15M9.15 19.75h5.7"
+                  />
+                  <path
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.25"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-opacity="0.42"
+                    d="M5.4 10.4c-.85 1.35-.85 3.25 0 4.55M18.6 10.4c.85 1.35.85 3.25 0 4.55"
+                  />
+                  <path
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.25"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-opacity="0.28"
+                    d="M3.35 8.65c-1.25 2.05-1.25 5.05 0 7M20.65 8.65c1.25 2.05 1.25 5.05 0 7"
+                  />
+                </svg>
+              </span>
+            </div>
             <h2 class="course-panel__heading">Cours de chant</h2>
             <p class="course-panel__text">
               Posture, respiration, justesse et interprétation — pour débutants comme pour chanteurs confirmés qui
@@ -86,8 +164,8 @@ import CoursesCenterTree from '../components/CoursesCenterTree.vue'
               <p class="course-panel__schedule-note">Sous réserve de places · autres créneaux sur demande</p>
             </div>
             <span class="course-panel__cta course-panel__cta--orange">
+              <span class="course-panel__cta-arrow" aria-hidden="true">←</span>
               En savoir plus
-              <span class="course-panel__cta-arrow" aria-hidden="true">→</span>
             </span>
           </div>
         </RouterLink>
@@ -98,15 +176,9 @@ import CoursesCenterTree from '../components/CoursesCenterTree.vue'
 
 <style scoped>
 .courses-page {
-  --course-blue: #5b7fd4;
-  --course-orange: #e87312;
   position: relative;
   z-index: 1;
   padding-bottom: 3rem;
-}
-
-.courses-page__inner {
-  max-width: 1080px;
 }
 
 .courses-page__intro {
@@ -192,8 +264,13 @@ import CoursesCenterTree from '../components/CoursesCenterTree.vue'
   cursor: pointer;
 }
 
-.course-panel--link:focus-visible {
-  outline: 2px solid rgba(91, 127, 212, 0.55);
+.course-panel--piano.course-panel--link:focus-visible {
+  outline: 2px solid rgba(116, 162, 255, 0.55);
+  outline-offset: 3px;
+}
+
+.course-panel--chant.course-panel--link:focus-visible {
+  outline: 2px solid rgba(255, 122, 0, 0.65);
   outline-offset: 3px;
 }
 
@@ -226,11 +303,11 @@ import CoursesCenterTree from '../components/CoursesCenterTree.vue'
 }
 
 .course-panel--piano::before {
-  background: radial-gradient(130% 90% at 0% 45%, rgba(116, 153, 241, 0.22), transparent 58%);
+  background: radial-gradient(125% 85% at 0% 48%, rgba(116, 162, 255, 0.11), transparent 52%);
 }
 
 .course-panel--chant::before {
-  background: radial-gradient(130% 90% at 100% 45%, rgba(245, 130, 22, 0.18), transparent 58%);
+  background: radial-gradient(125% 85% at 100% 48%, rgba(255, 122, 0, 0.09), transparent 52%);
 }
 
 /* Reflet animé (shimmer) — masqué au survol via opacity + clip */
@@ -262,9 +339,9 @@ import CoursesCenterTree from '../components/CoursesCenterTree.vue'
 
   .course-panel--piano:hover {
     transform: translateY(-5px);
-    border-color: rgba(91, 127, 212, 0.32);
+    border-color: rgba(116, 162, 255, 0.26);
     box-shadow:
-      0 20px 48px rgba(91, 127, 212, 0.16),
+      0 18px 42px rgba(116, 162, 255, 0.09),
       0 8px 24px rgba(28, 25, 23, 0.07);
   }
 
@@ -274,9 +351,9 @@ import CoursesCenterTree from '../components/CoursesCenterTree.vue'
 
   .course-panel--chant:hover {
     transform: translateY(-5px);
-    border-color: rgba(232, 115, 18, 0.3);
+    border-color: rgba(255, 122, 0, 0.24);
     box-shadow:
-      0 20px 48px rgba(245, 130, 22, 0.14),
+      0 18px 42px rgba(255, 122, 0, 0.08),
       0 8px 24px rgba(28, 25, 23, 0.07);
   }
 
@@ -289,40 +366,31 @@ import CoursesCenterTree from '../components/CoursesCenterTree.vue'
     animation: course-shimmer 0.95s cubic-bezier(0.33, 1, 0.68, 1) forwards;
   }
 
-  /* Logo + halos : réaction synchronisée via :has() (aucune logique JS) */
-  .courses-layout:has(.course-panel--piano:hover) :deep(.center-tree__glow--piano) {
-    opacity: 0.52;
-    transform: scale(1.06) translateX(-6px);
+  .courses-layout:has(.course-panel--piano:hover) :deep(.center-tree) {
+    --center-tree-stroke-a: var(--color-blue);
+    --center-tree-stroke-b: color-mix(in srgb, var(--color-blue) 72%, #ffffff);
   }
 
-  .courses-layout:has(.course-panel--chant:hover) :deep(.center-tree__glow--chant) {
-    opacity: 0.48;
-    transform: scale(1.06) translateX(6px);
+  .courses-layout:has(.course-panel--chant:hover) :deep(.center-tree) {
+    --center-tree-stroke-a: color-mix(in srgb, var(--color-orange) 62%, #ffffff);
+    --center-tree-stroke-b: var(--color-orange);
   }
 
-  .courses-layout:has(.course-panel--piano:hover) :deep(.center-tree__img) {
+  .courses-layout:has(.course-panel--piano:hover) :deep(.center-tree__svg) {
     transform: translateX(-10px) rotate(-3deg) scale(1.045);
-    filter:
-      drop-shadow(0 16px 36px rgba(91, 127, 212, 0.35))
-      drop-shadow(0 0 28px rgba(116, 153, 241, 0.22))
-      drop-shadow(0 8px 20px rgba(28, 25, 23, 0.06));
   }
 
-  .courses-layout:has(.course-panel--chant:hover) :deep(.center-tree__img) {
+  .courses-layout:has(.course-panel--chant:hover) :deep(.center-tree__svg) {
     transform: translateX(10px) rotate(3deg) scale(1.045);
-    filter:
-      drop-shadow(0 16px 36px rgba(232, 115, 18, 0.28))
-      drop-shadow(0 0 26px rgba(245, 130, 22, 0.2))
-      drop-shadow(0 8px 20px rgba(28, 25, 23, 0.06));
   }
 
   /* Bandeau latéral qui « pulse » visuellement au survol */
   .course-panel--piano:hover .course-panel__accent {
-    box-shadow: 0 0 22px rgba(116, 153, 241, 0.55);
+    box-shadow: 0 0 18px rgba(116, 162, 255, 0.28);
   }
 
   .course-panel--chant:hover .course-panel__accent {
-    box-shadow: 0 0 22px rgba(245, 130, 22, 0.5);
+    box-shadow: 0 0 18px rgba(255, 122, 0, 0.26);
   }
 }
 
@@ -346,13 +414,13 @@ import CoursesCenterTree from '../components/CoursesCenterTree.vue'
 }
 
 .course-panel--piano .course-panel__accent {
-  background: linear-gradient(180deg, var(--course-blue), rgba(116, 153, 241, 0.45));
+  background: linear-gradient(180deg, var(--color-blue), rgba(116, 162, 255, 0.35));
 }
 
 .course-panel--chant .course-panel__accent {
   left: auto;
   right: 0;
-  background: linear-gradient(180deg, var(--course-orange), rgba(245, 130, 22, 0.45));
+  background: linear-gradient(180deg, var(--color-orange), rgba(255, 122, 0, 0.35));
 }
 
 .course-panel__inner {
@@ -372,6 +440,53 @@ import CoursesCenterTree from '../components/CoursesCenterTree.vue'
   z-index: 1;
 }
 
+.course-panel__glyph-row {
+  display: flex;
+  width: 100%;
+}
+
+.course-panel--chant .course-panel__glyph-row {
+  justify-content: flex-end;
+}
+
+.course-panel__glyph {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.55rem;
+  height: 3.55rem;
+  border-radius: 14px;
+}
+
+.course-panel__glyph--piano {
+  color: var(--color-blue);
+  background: linear-gradient(160deg, rgba(116, 162, 255, 0.14), rgba(116, 162, 255, 0.04));
+  border: 1px solid rgba(116, 162, 255, 0.22);
+  box-shadow:
+    0 5px 14px rgba(116, 162, 255, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+.course-panel__glyph--chant {
+  color: var(--color-orange);
+  background: linear-gradient(160deg, rgba(255, 122, 0, 0.13), rgba(255, 122, 0, 0.035));
+  border: 1px solid rgba(255, 122, 0, 0.22);
+  box-shadow:
+    0 5px 14px rgba(255, 122, 0, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 0.42);
+}
+
+.course-panel__glyph-svg {
+  display: block;
+}
+
+.course-panel__glyph-svg--piano,
+.course-panel__glyph-svg--chant {
+  width: 1.95rem;
+  height: 1.95rem;
+}
+
 .course-panel--chant .course-panel__inner {
   padding-left: 1.55rem;
   padding-right: 1.65rem;
@@ -388,15 +503,6 @@ import CoursesCenterTree from '../components/CoursesCenterTree.vue'
     padding-left: 1.75rem;
     padding-right: 1.85rem;
   }
-}
-
-.course-panel__label {
-  margin: 0;
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
 }
 
 .course-panel__heading {
@@ -426,13 +532,13 @@ import CoursesCenterTree from '../components/CoursesCenterTree.vue'
 }
 
 .course-panel__schedule--piano {
-  background: linear-gradient(135deg, rgba(91, 127, 212, 0.09), rgba(116, 153, 241, 0.04));
-  border-color: rgba(91, 127, 212, 0.18);
+  background: linear-gradient(135deg, rgba(116, 162, 255, 0.06), rgba(116, 162, 255, 0.025));
+  border-color: rgba(116, 162, 255, 0.14);
 }
 
 .course-panel__schedule--chant {
-  background: linear-gradient(225deg, rgba(232, 115, 18, 0.08), rgba(245, 130, 22, 0.04));
-  border-color: rgba(232, 115, 18, 0.2);
+  background: linear-gradient(225deg, rgba(255, 122, 0, 0.055), rgba(255, 122, 0, 0.022));
+  border-color: rgba(255, 122, 0, 0.15);
 }
 
 .course-panel__schedule-title {
@@ -476,11 +582,11 @@ import CoursesCenterTree from '../components/CoursesCenterTree.vue'
 }
 
 .course-panel__schedule--piano .course-panel__schedule-hours {
-  color: rgba(55, 73, 133, 0.92);
+  color: color-mix(in srgb, var(--color-blue) 52%, var(--color-text));
 }
 
 .course-panel__schedule--chant .course-panel__schedule-hours {
-  color: rgba(140, 62, 10, 0.92);
+  color: color-mix(in srgb, var(--color-orange) 48%, var(--color-text));
 }
 
 .course-panel__schedule-note {
@@ -524,35 +630,43 @@ import CoursesCenterTree from '../components/CoursesCenterTree.vue'
 .course-panel__cta-arrow {
   font-size: 1.05rem;
   opacity: 0.65;
-  transition: opacity 0.2s var(--ease-out);
+  transition:
+    opacity 0.2s var(--ease-out),
+    transform 0.2s var(--ease-out);
 }
 
 @media (hover: hover) {
-  .course-panel--link:hover .course-panel__cta-arrow {
+  .course-panel--link:hover .course-panel__cta--blue .course-panel__cta-arrow {
     opacity: 1;
+    transform: translateX(3px);
+  }
+
+  .course-panel--link:hover .course-panel__cta--orange .course-panel__cta-arrow {
+    opacity: 1;
+    transform: translateX(-3px);
   }
 }
 
 .course-panel__cta--blue {
-  border-bottom-color: rgba(91, 127, 212, 0.45);
+  border-bottom-color: rgba(116, 162, 255, 0.45);
 }
 
 @media (hover: hover) {
   .course-panel--link:hover .course-panel__cta--blue {
-    color: var(--course-blue);
-    border-bottom-color: var(--course-blue);
+    color: var(--color-blue);
+    border-bottom-color: var(--color-blue);
   }
 }
 
 .course-panel__cta--orange {
   align-self: flex-end;
-  border-bottom-color: rgba(232, 115, 18, 0.45);
+  border-bottom-color: rgba(255, 122, 0, 0.45);
 }
 
 @media (hover: hover) {
   .course-panel--link:hover .course-panel__cta--orange {
-    color: var(--course-orange);
-    border-bottom-color: var(--course-orange);
+    color: var(--color-orange);
+    border-bottom-color: var(--color-orange);
   }
 }
 

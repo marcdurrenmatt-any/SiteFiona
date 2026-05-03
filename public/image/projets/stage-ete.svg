@@ -1,18 +1,24 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 220" fill="none">
   <defs>
-    <linearGradient id="sky" x1="200" y1="0" x2="200" y2="220" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#38bdf8" stop-opacity="0.35"/>
-      <stop offset="0.55" stop-color="#fef08a" stop-opacity="0.25"/>
-      <stop offset="1" stop-color="#fb923c" stop-opacity="0.3"/>
-    </linearGradient>
+    <clipPath id="soleil-clip">
+      <rect x="228" y="0" width="172" height="92"/>
+    </clipPath>
   </defs>
-  <rect width="400" height="220" fill="#fffbeb"/>
-  <rect width="400" height="220" fill="url(#sky)"/>
-  <circle cx="300" cy="56" r="36" fill="#fbbf24" fill-opacity="0.65"/>
-  <path d="M0 170 Q100 150 200 165 T400 160 V220H0Z" fill="#86efac" fill-opacity="0.35"/>
-  <path d="M0 185 Q120 175 240 188 T400 182 V220H0Z" fill="#4ade80" fill-opacity="0.25"/>
-  <g opacity="0.5" stroke="#1c1917" stroke-width="1.2">
-    <path d="M80 120l12-32 12 32M104 120l12-28 12 28"/>
-    <path d="M280 108v48M268 132h24"/>
+  <!-- ciel aplati -->
+  <rect width="400" height="220" fill="#fff7ed"/>
+  <rect width="400" height="118" fill="#fde68a" fill-opacity="0.35"/>
+  <!-- soleil derrière la ligne d’horizon -->
+  <circle cx="308" cy="108" r="50" fill="#ff7a00" fill-opacity="0.88" clip-path="url(#soleil-clip)"/>
+  <!-- collines -->
+  <path fill="#c4d4a8" fill-opacity="0.55" d="M0 154c80-28 160-12 240 4s120 8 160-12v74H0z"/>
+  <path fill="#a8b892" fill-opacity="0.45" d="M0 172c100-18 200 2 400-14v62H0z"/>
+  <!-- bâtiment cours -->
+  <path fill="#fafaf9" stroke="#d6d3d1" stroke-width="1" d="M148 118h104v82H148z"/>
+  <path fill="#ebe8e4" d="M148 118h104v18H148z"/>
+  <rect x="172" y="142" width="24" height="32" rx="1" fill="#1c1917" fill-opacity="0.15"/>
+  <rect x="206" y="150" width="20" height="24" rx="1" fill="#1c1917" fill-opacity="0.12"/>
+  <!-- portée au sol -->
+  <g stroke="#78716c" stroke-opacity="0.35" stroke-width="1" stroke-linecap="round">
+    <path d="M118 198h164"/><path d="M118 204h172"/><path d="M118 210h156"/>
   </g>
 </svg>

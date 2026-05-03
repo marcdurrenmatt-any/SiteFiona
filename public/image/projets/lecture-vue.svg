@@ -1,15 +1,27 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 220" fill="none">
-  <defs>
-    <linearGradient id="p" x1="60" y1="40" x2="340" y2="180" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#f5f5f4"/>
-      <stop offset="1" stop-color="#e7e5e4"/>
-    </linearGradient>
-  </defs>
-  <rect width="400" height="220" fill="#78716c" fill-opacity="0.12"/>
-  <rect x="88" y="44" width="224" height="132" rx="6" fill="url(#p)" stroke="#d6d3d1" stroke-width="1"/>
-  <path d="M108 72h184M108 92h160M108 112h176M108 132h148" stroke="#a8a29e" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
-  <circle cx="302" cy="78" r="8" fill="#74a2ff" fill-opacity="0.45"/>
-  <path d="M302 78v28M294 102h16" stroke="#57534e" stroke-width="1.5" stroke-linecap="round"/>
-  <ellipse cx="118" cy="162" rx="6" ry="4" fill="#1c1917" fill-opacity="0.25"/>
-  <path d="M124 130v36" stroke="#1c1917" stroke-width="2" stroke-linecap="round"/>
+  <rect width="400" height="220" fill="#e7e5e4"/>
+  <!-- feuille -->
+  <rect x="74" y="40" width="252" height="142" rx="2" fill="#fafaf9" stroke="#d6d3d1" stroke-width="1"/>
+  <!-- portée régulière -->
+  <g stroke="#78716c" stroke-opacity="0.5" stroke-width="1.2" stroke-linecap="round">
+    <path d="M96 76h208"/><path d="M96 88h208"/><path d="M96 100h208"/><path d="M96 112h208"/><path d="M96 124h208"/>
+  </g>
+  <!-- début de système : barre + deux points de mesure -->
+  <path stroke="#1c1917" stroke-width="2.6" stroke-linecap="round" d="M92 72v56"/>
+  <path stroke="#1c1917" stroke-width="1.4" stroke-linecap="round" d="M98 72v56"/>
+  <circle cx="114" cy="96" r="3.5" fill="#1c1917" fill-opacity="0.35"/>
+  <circle cx="114" cy="112" r="3.5" fill="#1c1917" fill-opacity="0.35"/>
+  <!-- trois notes alignées sur la portée -->
+  <g stroke="#74a2ff" stroke-width="2" stroke-linecap="round">
+    <ellipse cx="158" cy="88" rx="5.5" ry="4.5" fill="#74a2ff" fill-opacity="0.5" stroke="none"/>
+    <path d="M164 88v26"/>
+    <ellipse cx="196" cy="106" rx="5.5" ry="4.5" fill="#74a2ff" fill-opacity="0.5" stroke="none"/>
+    <path d="M202 106v22"/>
+    <ellipse cx="238" cy="82" rx="5.5" ry="4.5" fill="#74a2ff" fill-opacity="0.5" stroke="none"/>
+    <path d="M244 82v32"/>
+  </g>
+  <!-- crayon -->
+  <path stroke="#ff7a00" stroke-width="3.5" stroke-linecap="round" d="M276 162 336 82"/>
+  <path fill="#292524" d="M334 80 344 90 338 94z"/>
+  <ellipse cx="200" cy="196" rx="72" ry="5" fill="#1c1917" fill-opacity="0.05"/>
 </svg>

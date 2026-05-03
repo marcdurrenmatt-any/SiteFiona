@@ -6,7 +6,7 @@
       <p class="projets-page__lede">
         Autour des cours, je propose des temps collectifs et des moments sur scène pour jouer ensemble, se présenter au
         public et faire vivre la musique hors du cadre strict du cours individuel — toujours dans un esprit bienveillant et
-        ouvert à tous niveaux.
+        ouvert à tous les niveaux.
       </p>
     </header>
 
@@ -21,6 +21,7 @@
             height="220"
             loading="lazy"
             decoding="async"
+            :style="item.imagePosition ? { objectPosition: item.imagePosition } : undefined"
           />
         </figure>
         <div class="projet-card__body">
@@ -28,6 +29,9 @@
           <h2 class="projet-card__title">{{ item.title }}</h2>
           <p class="projet-card__tag">{{ item.tag }}</p>
           <p class="projet-card__text">{{ item.description }}</p>
+          <p class="projet-card__cta">
+            <RouterLink to="/contact" class="projet-card__cta-link">M’écrire pour en parler</RouterLink>
+          </p>
         </div>
       </li>
     </ul>
@@ -42,7 +46,8 @@ const projetsRaw = [
     tag: 'Scène',
     title: 'Premières auditions',
     image: '/image/projets/premiere-audition.svg',
-    imageAlt: 'Illustration stylisée : petite scène et projecteurs',
+    imageAlt:
+      'Illustration stylisée : petite scène et pupitre devant un public, pour évoquer une première audition devant les proches',
     description:
       'Micro-concerts réguliers où chaque élève présente une ou deux pièces devant un petit public : travail de la présence, du geste et du plaisir de partager sans pression de concours.',
   },
@@ -50,7 +55,7 @@ const projetsRaw = [
     tag: 'Collectif',
     title: 'Atelier chorale ouverte',
     image: '/image/projets/chorale.svg',
-    imageAlt: 'Illustration stylisée : voix et lignes mélodiques entrelacées',
+    imageAlt: 'Illustration : silhouettes de chanteurs et pupitre, ambiance chœur ouvert à tous',
     description:
       'Travail de répertoire polyphonique accessible aux débutants comme aux confirmés : respiration d’ensemble, timbres mélangés et préparation d’un programme commun.',
   },
@@ -58,7 +63,8 @@ const projetsRaw = [
     tag: 'Création',
     title: 'Voix & piano — mise en espace',
     image: '/image/projets/voix-piano.svg',
-    imageAlt: 'Illustration stylisée : touches de piano et ligne vocale',
+    imageAlt:
+      'Illustration : piano vu du dessus et ligne de mélodie qui se prolonge vers une note, pour évoquer voix et piano',
     description:
       'Sessions où voix et piano explorent des textes contemporains ou poésie : mise en forme, improvisation guidée et petite restitution en fin de cycle.',
   },
@@ -66,7 +72,7 @@ const projetsRaw = [
     tag: 'Stage',
     title: 'Intensif d’été',
     image: '/image/projets/stage-ete.svg',
-    imageAlt: 'Illustration stylisée : paysage d’été et soleil',
+    imageAlt: 'Illustration : paysage d’été (soleil, nature) pour évoquer un stage musical en saison estivale',
     description:
       'Une semaine concentrée mêlant cours individuels, ateliers de corps et de répertoire, avec temps de jeu ensemble et échange entre participants.',
   },
@@ -74,7 +80,8 @@ const projetsRaw = [
     tag: 'Pratique',
     title: 'Lecture à vue — groupe adultes',
     image: '/image/projets/lecture-vue.svg',
-    imageAlt: 'Illustration stylisée : partition et lecture musicale',
+    imageAlt:
+      'Illustration : partition avec portée et notes, crayon à côté, pour évoquer la lecture à vue en groupe',
     description:
       'Rencontres mensuelles pour déchiffrer ensemble partitions variées : généraliser la lecture, gagner en fluidité et partager des astuces entre pianistes.',
   },
@@ -82,7 +89,7 @@ const projetsRaw = [
     tag: 'Convivialité',
     title: 'Soirée concert partagé',
     image: '/image/projets/concert-partage.svg',
-    imageAlt: 'Illustration stylisée : ambiance concert conviviale',
+    imageAlt: 'Illustration : salle conviviale et musiciens réunis pour un concert partagé',
     description:
       'Une fois par saison, une soirée informelle mêlant élèves, familles et morceaux du répertoire chanté ou pianistique — entrée libre et ambiance chaleureuse.',
   },
@@ -91,14 +98,11 @@ const projetsRaw = [
 const projets = projetsRaw.map((item) => ({
   ...item,
   image: publicAsset(item.image),
+  imagePosition: item.imagePosition ?? null,
 }))
 </script>
 
 <style scoped>
-.projets-page {
-  max-width: 1040px;
-}
-
 .projets-page__intro {
   margin-bottom: 2.25rem;
 }
@@ -233,6 +237,22 @@ const projets = projetsRaw.map((item) => ({
   font-size: 0.93rem;
   line-height: 1.65;
   color: var(--color-text-muted);
+}
+
+.projet-card__cta {
+  margin: 0.85rem 0 0;
+}
+
+.projet-card__cta-link {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-orange);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.projet-card__cta-link:hover {
+  color: var(--color-orange-deep);
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,11 +1,54 @@
 <script setup>
-import { ref } from 'vue'
+import { computed, ref, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+
+const route = useRoute()
+const router = useRouter()
 
 const sent = ref(false)
+/** Message démo (sans backend). False après redirection Formspree / service tiers. */
+const isDemoSubmission = ref(false)
+
+const remoteAction = (import.meta.env.VITE_CONTACT_FORM_ACTION || '').trim()
+
+const thanksUrl = computed(() => {
+  if (typeof window === 'undefined') return ''
+  const rawBase = import.meta.env.BASE_URL
+  const base = rawBase.endsWith('/') ? rawBase.slice(0, -1) : rawBase
+  return `${window.location.origin}${base}/contact?envoye=1`
+})
+
+watch(
+  () => route.query.envoye,
+  (v) => {
+    if (v === '1') {
+      sent.value = true
+      isDemoSubmission.value = false
+      router.replace({ path: '/contact', query: {} })
+    }
+  },
+  { immediate: true },
+)
+
+const contactAsideBgImage = computed(() => {
+  const base = import.meta.env.BASE_URL
+  const b = base.endsWith('/') ? base : `${base}/`
+  return `url('${b}image/Fond-colore%202.png')`
+})
+
+const noticeMessage = computed(() => {
+  if (isDemoSubmission.value) {
+    return 'Merci — votre message a bien été enregistré en démonstration sur ce site. Pour recevoir les messages par e-mail, configurez la variable VITE_CONTACT_FORM_ACTION (ex. URL Formspree) puis reconstruisez le site.'
+  }
+  return 'Merci — votre message a bien été envoyé. Je vous réponds en général sous 2 à 3 jours ouvrés.'
+})
 
 function onSubmit(e) {
-  e.preventDefault()
-  sent.value = true
+  if (!remoteAction) {
+    e.preventDefault()
+    isDemoSubmission.value = true
+    sent.value = true
+  }
 }
 </script>
 
@@ -14,9 +57,12 @@ function onSubmit(e) {
     <p class="contact-page__kicker">Écrire</p>
     <h1 class="contact-page__title">Contact</h1>
     <p class="contact-page__lede">Une question sur les cours ou les créneaux ? Laissez un message.</p>
+    <p class="contact-page__response-hint">
+      Je lis chaque message personnellement et je vous réponds en général sous <strong>2 à 3 jours ouvrés</strong>.
+    </p>
 
     <div class="contact-card">
-      <aside class="contact-card__aside">
+      <aside class="contact-card__aside" :style="{ '--contact-aside-bg-image': contactAsideBgImage }">
         <h2 class="contact-card__title">Mes informations</h2>
         <p class="contact-card__subtitle">Téléphone, mail et emplacement</p>
         <ul class="contact-card__list">
@@ -65,10 +111,27 @@ function onSubmit(e) {
       </aside>
 
       <div class="contact-card__form-wrap">
-        <p v-if="sent" class="contact-card__notice" role="status">
-          Merci — votre message a bien été enregistré (démonstration : brancher un envoi réel côté serveur si besoin).
+        <p v-if="sent" class="contact-card__notice" role="status" aria-live="polite">
+          {{ noticeMessage }}
         </p>
-        <form v-else class="contact-form" @submit="onSubmit">
+        <form
+          v-else
+          class="contact-form"
+          :action="remoteAction || undefined"
+          method="POST"
+          @submit="onSubmit"
+        >
+          <template v-if="remoteAction">
+            <input type="hidden" name="_subject" value="Message — site L’arbre des voix" />
+            <input type="hidden" name="_next" :value="thanksUrl" />
+            <div class="contact-form__honeypot" aria-hidden="true">
+              <label class="contact-form__honeypot-label">
+                Ne pas remplir ce champ
+                <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
+              </label>
+            </div>
+          </template>
+
           <div class="contact-form__row">
             <label class="contact-form__field">
               <span class="contact-form__label">Prénom</span>
@@ -131,11 +194,19 @@ function onSubmit(e) {
 }
 
 .contact-page__lede {
-  margin: 0 0 2rem;
+  margin: 0 0 0.65rem;
   max-width: 42ch;
   font-size: 1.05rem;
   color: var(--color-text-muted);
   line-height: 1.6;
+}
+
+.contact-page__response-hint {
+  margin: 0 0 2rem;
+  max-width: 46ch;
+  font-size: 0.93rem;
+  line-height: 1.55;
+  color: var(--color-text-muted);
 }
 
 .contact-card {
@@ -162,23 +233,16 @@ function onSubmit(e) {
   border-bottom: 1px solid var(--color-border);
 }
 
-/* Même esprit que PageBackdrop : chaud → bronze, halo crème (sans bitmap) */
 .contact-card__aside::before {
   content: '';
   position: absolute;
   inset: 0;
   z-index: 0;
-  background:
-    radial-gradient(ellipse 95% 85% at 40% 18%, rgba(255, 252, 246, 0.88) 0%, transparent 62%),
-    radial-gradient(ellipse 70% 65% at 88% 72%, rgba(109, 74, 61, 0.18) 0%, transparent 58%),
-    radial-gradient(ellipse 65% 55% at 8% 58%, rgba(184, 67, 76, 0.14) 0%, transparent 58%),
-    linear-gradient(
-      106deg,
-      rgba(198, 76, 72, 0.13) 0%,
-      rgba(245, 238, 228, 0.07) 42%,
-      rgba(166, 124, 82, 0.12) 100%
-    );
-  opacity: 0.95;
+  background-color: #faf8f5;
+  background-image: var(--contact-aside-bg-image, none);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
 .contact-card__aside::after {
@@ -189,9 +253,9 @@ function onSubmit(e) {
   pointer-events: none;
   background: linear-gradient(
     155deg,
-    rgba(255, 255, 255, 0.72) 0%,
-    rgba(255, 252, 247, 0.52) 55%,
-    rgba(250, 246, 240, 0.68) 100%
+    rgba(255, 255, 255, 0.78) 0%,
+    rgba(255, 252, 247, 0.58) 52%,
+    rgba(250, 246, 240, 0.72) 100%
   );
 }
 
@@ -274,9 +338,28 @@ function onSubmit(e) {
 }
 
 .contact-form {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 1.35rem;
+}
+
+.contact-form__honeypot {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.contact-form__honeypot-label {
+  display: block;
 }
 
 .contact-form__row {
@@ -363,5 +446,14 @@ function onSubmit(e) {
   transform: translateY(-1px);
   box-shadow: 0 8px 22px rgba(255, 122, 0, 0.38);
   filter: brightness(1.03);
+}
+
+.contact-form__submit:focus-visible {
+  outline: 2px solid var(--color-orange);
+  outline-offset: 3px;
+}
+
+.contact-form__submit:focus-visible:not(:hover) {
+  transform: none;
 }
 </style>

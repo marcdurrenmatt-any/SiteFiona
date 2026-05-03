@@ -17,7 +17,7 @@
       <figure class="about__figure about__figure--hero">
         <div class="about__photo-frame about__photo-frame--portrait">
           <img
-            class="about__photo-img"
+            class="about__photo-img about__photo-img--profile"
             :src="aboutPortraitUrl"
             alt="Portrait de Fiona Climent"
             loading="eager"
@@ -63,53 +63,46 @@
       </figure>
       <div class="about__split-copy">
         <h2 class="about__h2">Mon parcours</h2>
-        <p>
-          Formée au conservatoire et active sur scène, je relie pratique instrumentale, travail vocal et culture musicale.
-          Mon objectif : vous donner des repères solides tout en préservant votre singularité artistique.
+        <p class="about__split-lead">
+          Formée au conservatoire, je relie au quotidien piano, chant et culture musicale — avec une pratique scénique et
+          d’accompagnement qui continue de nourrir mon enseignement.
         </p>
-        <p class="about__split-note">
-          Envie d’en savoir plus sur les cours ?
-          <RouterLink to="/cours" class="about__inline-link">Voir l’offre pédagogique</RouterLink>
-        </p>
+        <ul class="about__parcours-list">
+          <li>Cursus au conservatoire et présence régulière sur scène</li>
+          <li>Pianiste accompagnatrice — répertoire classique, contemporain et musiques actuelles</li>
+          <li>Contextes variés : concerts, auditions, duo voix-piano et travail avec chanteurs ou petites formations</li>
+        </ul>
       </div>
     </div>
 
-    <blockquote class="about__quote">
-      <p>
-        « La musique se joue avec les mains, mais on l’entend d’abord avec les oreilles — et un peu avec le cœur. »
-      </p>
-    </blockquote>
-
     <div class="about__card">
-      <div class="about__grid">
-        <div class="about__block">
-          <h2 class="about__h2">L’arbre des voix</h2>
-          <p>
-            Ce nom évoque la rencontre entre la voix et les touches du piano — racines communes, branches qui s’épanouissent
-            au fil des cours. Les séances allient rigueur et créativité, dans un cadre calme et motivant.
-          </p>
-        </div>
-        <div class="about__block about__block--highlight">
-          <h2 class="about__h2">Pour qui ?</h2>
-          <ul class="about__list">
-            <li>Enfants à partir de 7 ans, adolescents et adultes</li>
-            <li>Tous niveaux, du loisir au projet de concert</li>
-            <li>Cours individuels ; possibilité d’ateliers collectifs sur demande</li>
-          </ul>
-        </div>
+      <div class="about__block">
+        <h2 class="about__h2">Ma manière d’enseigner</h2>
+        <p>
+          Il n’y a pas de « bon » cursus unique : chaque séance part de votre niveau, du temps dont vous disposez et de ce qui
+          vous anime — piano, chant, ou les deux.
+        </p>
+        <p>
+          J’alterne exercices courts et travail sur le répertoire pour que la technique serve toujours le son et la phrase
+          musicale. On fixe des objectifs réalistes, on revoit ce qui coince sans dramatiser, et on garde de la marge pour vos
+          envies : une pièce à préparer, une audition, ou simplement jouer et chanter pour le plaisir.
+        </p>
+        <p>
+          <RouterLink to="/cours" class="about__inline-link">Voir les cours</RouterLink>
+        </p>
       </div>
 
-      <figure class="about__figure about__figure--footer">
-        <div class="about__photo-frame about__photo-frame--banner">
-          <img
-            class="about__photo-img about__photo-img--banner"
-            :src="aboutBannerChoirUrl"
-            alt="Groupe de chanteurs en répétition ou en concert, illustrant le chant collectif et la scène"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-      </figure>
+      <div class="about__block">
+        <h2 class="about__h2">Mes projets</h2>
+        <p>
+          Autour des cours, je propose aussi des temps collectifs et des moments sur scène — pour jouer ensemble, se présenter
+          au public et faire vivre la musique hors du cadre strict du cours individuel, toujours dans un esprit ouvert à tous
+          les niveaux.
+        </p>
+        <p>
+          <RouterLink to="/projets" class="about__inline-link">Voir les projets</RouterLink>
+        </p>
+      </div>
 
       <div class="about__cta-row">
         <RouterLink
@@ -130,7 +123,6 @@ import { publicAsset } from '@/utils/publicUrl'
 
 const aboutPortraitUrl = publicAsset('/image/72825.webp')
 const aboutAmbianceUrl = publicAsset('/image/about-ambiance-conservatoire.jpg')
-const aboutBannerChoirUrl = publicAsset('/image/about-banner-choeur.jpg')
 </script>
 
 <style scoped>
@@ -222,6 +214,28 @@ const aboutBannerChoirUrl = publicAsset('/image/about-banner-choeur.jpg')
 .about__photo-frame--portrait {
   aspect-ratio: 3 / 4;
   max-height: min(520px, 70vh);
+  border-color: var(--color-border-strong);
+  box-shadow:
+    var(--shadow-md),
+    0 24px 48px rgba(28, 25, 23, 0.08);
+}
+
+.about__photo-frame--portrait::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  border-radius: inherit;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  background:
+    radial-gradient(ellipse 90% 85% at 50% 38%, transparent 32%, rgba(28, 25, 23, 0.14) 100%),
+    linear-gradient(
+      165deg,
+      rgba(244, 242, 239, 0.25) 0%,
+      transparent 42%,
+      rgba(255, 122, 0, 0.04) 100%
+    );
 }
 
 .about__photo-img {
@@ -230,6 +244,22 @@ const aboutBannerChoirUrl = publicAsset('/image/about-banner-choeur.jpg')
   display: block;
   object-fit: cover;
   object-position: center 22%;
+}
+
+.about__photo-img--profile {
+  position: relative;
+  z-index: 0;
+  filter: contrast(1.06) saturate(0.9) brightness(1.02);
+}
+
+@media (prefers-contrast: more) {
+  .about__photo-img--profile {
+    filter: contrast(1.08) brightness(1.02);
+  }
+
+  .about__photo-frame--portrait::after {
+    background: radial-gradient(ellipse 95% 90% at 50% 42%, transparent 40%, rgba(28, 25, 23, 0.22) 100%);
+  }
 }
 
 @media (max-width: 879px) {
@@ -245,19 +275,6 @@ const aboutBannerChoirUrl = publicAsset('/image/about-banner-choeur.jpg')
 }
 
 .about__photo-img--ambiance {
-  object-position: center center;
-}
-
-.about__photo-frame--banner {
-  width: 100%;
-  max-width: min(820px, 100%);
-  margin-inline: auto;
-  aspect-ratio: 16 / 9;
-  min-height: 160px;
-  max-height: min(340px, 42vw);
-}
-
-.about__photo-img--banner {
   object-position: center center;
 }
 
@@ -415,39 +432,20 @@ const aboutBannerChoirUrl = publicAsset('/image/about-banner-choeur.jpg')
   margin-top: 1rem;
 }
 
-.about__split-note {
-  font-size: 0.92rem !important;
-  color: var(--color-text-muted) !important;
-}
-
-.about__inline-link {
-  font-weight: 600;
-  color: var(--color-orange);
-  border-bottom: 1px solid rgba(255, 122, 0, 0.35);
-  transition:
-    color 0.2s var(--ease-out),
-    border-color 0.2s var(--ease-out);
-}
-
-.about__inline-link:hover {
-  color: var(--color-text);
-  border-bottom-color: var(--color-text);
-}
-
-.about__quote {
-  margin: 0 0 2.5rem;
-  padding: 1.35rem 0 1.35rem 1.35rem;
-  border-left: 4px solid var(--color-orange);
-  background: linear-gradient(90deg, var(--color-orange-soft), transparent 65%);
-  border-radius: 0 var(--radius-md) var(--radius-md) 0;
-}
-
-.about__quote p {
+.about__split-lead {
   margin: 0;
-  font-size: clamp(1.05rem, 2vw, 1.2rem);
-  font-style: italic;
-  line-height: 1.55;
+}
+
+.about__parcours-list {
+  margin: 0.85rem 0 0;
+  padding-left: 1.15rem;
+  font-size: 0.98rem;
+  line-height: 1.72;
   color: var(--color-text);
+}
+
+.about__parcours-list li + li {
+  margin-top: 0.45rem;
 }
 
 .about__card {
@@ -462,19 +460,6 @@ const aboutBannerChoirUrl = publicAsset('/image/about-banner-choeur.jpg')
 @media (min-width: 640px) {
   .about__card {
     padding: 2.5rem 2.5rem 2.35rem;
-  }
-}
-
-.about__grid {
-  display: grid;
-  gap: 1.85rem;
-}
-
-@media (min-width: 720px) {
-  .about__grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem 2.25rem;
-    align-items: start;
   }
 }
 
@@ -493,27 +478,29 @@ const aboutBannerChoirUrl = publicAsset('/image/about-banner-choeur.jpg')
   font-size: 0.98rem;
 }
 
-.about__block--highlight {
-  background: linear-gradient(135deg, var(--color-orange-soft), var(--color-blue-soft));
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: 1.35rem 1.4rem;
+.about__block p + p {
+  margin-top: 1rem;
 }
 
-.about__list {
-  margin: 0;
-  padding-left: 1.15rem;
-  color: var(--color-text);
-  line-height: 1.75;
-  font-size: 0.98rem;
-}
-
-.about__figure--footer {
+.about__block + .about__block {
   margin-top: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.about__inline-link {
+  font-weight: 600;
+  color: var(--color-orange);
+  border-bottom: 1px solid rgba(255, 122, 0, 0.35);
+  text-decoration: none;
+  transition:
+    color 0.2s var(--ease-out),
+    border-color 0.2s var(--ease-out);
+}
+
+.about__inline-link:hover {
+  color: var(--color-text);
+  border-bottom-color: var(--color-text);
 }
 
 .about__cta-row {

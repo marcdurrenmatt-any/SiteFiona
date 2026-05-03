@@ -25,7 +25,7 @@
       <rect width="100%" height="100%" filter="url(#page-bd-noise)" opacity="1" />
     </svg>
 
-    <!-- Décor musical + touches « matière » (taches, rayures) dans le même viewBox -->
+    <!-- Décor musical + matière (taches, rayures, portée) — sans bande « clavier » (évite l’effet rectangles) -->
     <svg
       class="page-backdrop__art"
       xmlns="http://www.w3.org/2000/svg"
@@ -73,8 +73,8 @@
         cy="520"
         rx="380"
         ry="300"
-        fill="#5b6e8c"
-        fill-opacity="0.045"
+        fill="#74a2ff"
+        fill-opacity="0.055"
         transform="rotate(6 220 520)"
       />
 
@@ -108,20 +108,6 @@
         <line x1="120" y1="328" x2="640" y2="328" />
         <line x1="120" y1="348" x2="640" y2="348" />
       </g>
-
-      <g class="page-backdrop__keys" :opacity="0.5">
-        <rect
-          v-for="(k, i) in keyStripes"
-          :key="i"
-          :x="k.x"
-          y="628"
-          :width="k.w"
-          height="152"
-          rx="1.5"
-          :fill="palette.ink"
-          :fill-opacity="k.o"
-        />
-      </g>
     </svg>
 
     <div class="page-backdrop__veil" />
@@ -131,19 +117,7 @@
 <script setup>
 const palette = {
   warm: '#9a6b52',
-  ink: '#1c1917',
 }
-
-const keyStripes = (() => {
-  const out = []
-  let x = 72
-  while (x < 1128) {
-    const w = 26 + (out.length % 5) * 0.6
-    out.push({ x, w, o: out.length % 2 === 0 ? 0.038 : 0.068 })
-    x += w + 2.6
-  }
-  return out
-})()
 
 /** Taches organiques rappelant l’aquarelle / le fond coloré d’origine */
 const splatterBlobs = [
@@ -183,8 +157,9 @@ const scratches = (() => {
 </script>
 
 <style scoped>
+/* Absolute dans #app : le fond défile avec la page (plus fixed plein écran) */
 .page-backdrop {
-  position: fixed;
+  position: absolute;
   inset: 0;
   z-index: 0;
   pointer-events: none;

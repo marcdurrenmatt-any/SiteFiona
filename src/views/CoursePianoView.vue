@@ -13,6 +13,11 @@
       </p>
     </header>
 
+    <p class="course-detail__meta-note">
+      Durées habituelles : <strong>30 à 60 minutes</strong> selon votre niveau et votre emploi du temps — nous les fixons
+      ensemble lors du premier échange.
+    </p>
+
     <div class="course-detail__card">
       <section class="course-detail__block">
         <h2 class="course-detail__h2">Approche</h2>
@@ -53,6 +58,11 @@
         </RouterLink>
       </section>
     </div>
+
+    <p class="course-detail__cross">
+      Envie d’explorer le chant ?
+      <RouterLink to="/cours/chant" class="course-detail__cross-link">Voir les cours de chant</RouterLink>
+    </p>
   </div>
 </template>
 
@@ -160,8 +170,8 @@
   border-radius: var(--radius-md);
   text-align: center;
   background: linear-gradient(165deg, rgba(116, 162, 255, 0.14), rgba(116, 162, 255, 0.04));
-  border: 1px solid rgba(91, 127, 212, 0.22);
-  box-shadow: 0 8px 28px rgba(91, 127, 212, 0.08);
+  border: 1px solid rgba(116, 162, 255, 0.22);
+  box-shadow: 0 8px 28px rgba(116, 162, 255, 0.08);
 }
 
 @media (min-width: 640px) {
@@ -206,7 +216,7 @@
     box-shadow 0.2s var(--ease-out),
     gap 0.2s var(--ease-out);
   box-shadow:
-    0 4px 14px rgba(91, 127, 212, 0.35),
+    0 4px 14px rgba(116, 162, 255, 0.35),
     0 2px 6px rgba(28, 25, 23, 0.06);
 }
 
@@ -226,7 +236,7 @@
   transform: translateY(-1px);
   gap: 0.62rem;
   box-shadow:
-    0 8px 22px rgba(91, 127, 212, 0.38),
+    0 8px 22px rgba(116, 162, 255, 0.38),
     0 2px 8px rgba(28, 25, 23, 0.07);
 }
 
@@ -237,5 +247,31 @@
 .course-detail__cta:focus-visible {
   outline: 2px solid var(--color-blue);
   outline-offset: 3px;
+}
+
+.course-detail__meta-note {
+  margin: -0.25rem 0 1.55rem;
+  max-width: 40rem;
+  font-size: 0.93rem;
+  line-height: 1.65;
+  color: var(--color-text-muted);
+}
+
+.course-detail__cross {
+  margin: 1.65rem 0 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.course-detail__cross-link {
+  font-weight: 600;
+  color: var(--color-orange);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.course-detail__cross-link:hover {
+  color: var(--color-orange-deep);
 }
 </style>

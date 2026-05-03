@@ -8,10 +8,15 @@
       <p class="course-detail__kicker">Parcours chant</p>
       <h1 class="course-detail__title">Cours de chant</h1>
       <p class="course-detail__lede">
-        Travail de la voix parlée et chantée : corps, souffle, justesse et couleur sonore — pour trouver une emission saine
+        Travail de la voix parlée et chantée : corps, souffle, justesse et couleur sonore — pour trouver une émission saine
         et exprimer ce que vous voulez dire musicalement.
       </p>
     </header>
+
+    <p class="course-detail__meta-note">
+      Durées habituelles : <strong>30 à 60 minutes</strong> selon votre niveau et votre emploi du temps — nous les fixons
+      ensemble lors du premier échange.
+    </p>
 
     <div class="course-detail__card">
       <section class="course-detail__block">
@@ -53,6 +58,11 @@
         </RouterLink>
       </section>
     </div>
+
+    <p class="course-detail__cross">
+      Envie d’explorer le piano ?
+      <RouterLink to="/cours/piano" class="course-detail__cross-link">Voir les cours de piano</RouterLink>
+    </p>
   </div>
 </template>
 
@@ -160,8 +170,8 @@
   border-radius: var(--radius-md);
   text-align: center;
   background: linear-gradient(165deg, rgba(255, 122, 0, 0.12), rgba(255, 122, 0, 0.04));
-  border: 1px solid rgba(232, 115, 18, 0.28);
-  box-shadow: 0 8px 28px rgba(232, 115, 18, 0.09);
+  border: 1px solid rgba(255, 122, 0, 0.28);
+  box-shadow: 0 8px 28px rgba(255, 122, 0, 0.09);
 }
 
 @media (min-width: 640px) {
@@ -236,5 +246,31 @@
 .course-detail__cta:focus-visible {
   outline: 2px solid var(--color-orange);
   outline-offset: 3px;
+}
+
+.course-detail__meta-note {
+  margin: -0.25rem 0 1.55rem;
+  max-width: 40rem;
+  font-size: 0.93rem;
+  line-height: 1.65;
+  color: var(--color-text-muted);
+}
+
+.course-detail__cross {
+  margin: 1.65rem 0 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.course-detail__cross-link {
+  font-weight: 600;
+  color: var(--color-blue);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.course-detail__cross-link:hover {
+  color: var(--color-blue-deep);
 }
 </style>

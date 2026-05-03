@@ -26,7 +26,7 @@ const crumbs = computed(() => {
 </script>
 
 <template>
-  <nav v-if="crumbs.length" class="breadcrumb" aria-label="Fil d'Ariane">
+  <nav v-if="crumbs.length" class="breadcrumb" aria-label="Fil d’Ariane">
     <ol class="breadcrumb__list">
       <li v-for="(item, index) in crumbs" :key="index" class="breadcrumb__item">
         <RouterLink v-if="item.to" class="breadcrumb__link" :to="item.to">{{ item.label }}</RouterLink>
