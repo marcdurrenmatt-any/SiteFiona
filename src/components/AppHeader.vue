@@ -4,6 +4,8 @@ import { computed } from 'vue'
 
 import { useRoute } from 'vue-router'
 
+import { publicAsset } from '@/utils/publicUrl'
+
 
 
 const route = useRoute()
@@ -54,7 +56,7 @@ const headerClass = computed(() => ({
 
       <RouterLink to="/" class="app-header__brand">
 
-        <img class="app-header__logo" src="/image/g499.svg" alt="" width="44" height="44" />
+        <img class="app-header__logo" :src="publicAsset('/image/g499.svg')" alt="" width="44" height="44" />
 
         <span class="app-header__brand-text">
 

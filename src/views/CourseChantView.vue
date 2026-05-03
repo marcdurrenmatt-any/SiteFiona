@@ -43,7 +43,14 @@
 
       <section class="course-detail__block course-detail__block--cta">
         <p class="course-detail__cta-text">Envie de faire un point sur votre voix ou vos objectifs ?</p>
-        <RouterLink to="/contact" class="course-detail__cta">Écrire pour un premier échange</RouterLink>
+        <RouterLink
+          to="/contact"
+          class="course-detail__cta"
+          aria-label="Prendre contact pour un premier échange"
+        >
+          <span class="course-detail__cta-label">Prendre contact</span>
+          <span class="course-detail__cta-arrow" aria-hidden="true">→</span>
+        </RouterLink>
       </section>
     </div>
   </div>
@@ -118,6 +125,12 @@
   border-top: 1px solid var(--color-border);
 }
 
+.course-detail__block + .course-detail__block.course-detail__block--cta {
+  margin-top: 2.35rem;
+  padding-top: 3.35rem;
+  border-top: none;
+}
+
 .course-detail__h2 {
   margin: 0 0 0.6rem;
   font-size: 1.05rem;
@@ -142,36 +155,86 @@
 }
 
 .course-detail__block--cta {
-  margin-top: 1.75rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--color-border);
+  padding-inline: 1.35rem;
+  padding-bottom: 1.85rem;
+  border-radius: var(--radius-md);
   text-align: center;
+  background: linear-gradient(165deg, rgba(255, 122, 0, 0.12), rgba(255, 122, 0, 0.04));
+  border: 1px solid rgba(232, 115, 18, 0.28);
+  box-shadow: 0 8px 28px rgba(232, 115, 18, 0.09);
 }
 
-.course-detail__cta-text {
-  margin: 0 0 1rem;
-  font-size: 0.95rem;
+@media (min-width: 640px) {
+  .course-detail__block + .course-detail__block.course-detail__block--cta {
+    padding-top: 3.55rem;
+  }
+
+  .course-detail__block--cta {
+    padding-inline: 1.75rem;
+    padding-bottom: 2rem;
+  }
+}
+
+.course-detail__block--cta .course-detail__cta-text {
+  margin: 0 auto 1.45rem;
+  max-width: min(100%, 26rem);
+  font-size: 0.98rem;
+  line-height: 1.6;
   color: var(--color-text-muted);
+  text-wrap: balance;
+  text-align: center;
 }
 
 .course-detail__cta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.72rem 1.5rem;
+  gap: 0.5rem;
+  padding: 0.88rem 1.65rem 0.88rem 1.85rem;
+  min-height: 2.75rem;
   border-radius: var(--radius-pill);
   font-weight: 600;
-  font-size: 0.92rem;
-  background: var(--color-text);
-  color: #fafaf9;
+  font-size: 0.94rem;
+  letter-spacing: 0.01em;
+  background: var(--color-orange);
+  color: #fff;
   text-decoration: none;
   transition:
+    transform 0.2s var(--ease-out),
     filter 0.2s var(--ease-out),
-    box-shadow 0.2s var(--ease-out);
-  box-shadow: 0 2px 10px rgba(28, 25, 23, 0.1);
+    box-shadow 0.2s var(--ease-out),
+    gap 0.2s var(--ease-out);
+  box-shadow:
+    0 4px 14px rgba(255, 122, 0, 0.32),
+    0 2px 6px rgba(28, 25, 23, 0.06);
+}
+
+.course-detail__cta-label {
+  line-height: 1.2;
+}
+
+.course-detail__cta-arrow {
+  font-size: 1.08rem;
+  font-weight: 500;
+  opacity: 0.92;
+  transition: transform 0.2s var(--ease-out);
 }
 
 .course-detail__cta:hover {
-  filter: brightness(1.06);
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+  gap: 0.62rem;
+  box-shadow:
+    0 8px 22px rgba(255, 122, 0, 0.35),
+    0 2px 8px rgba(28, 25, 23, 0.07);
+}
+
+.course-detail__cta:hover .course-detail__cta-arrow {
+  transform: translateX(3px);
+}
+
+.course-detail__cta:focus-visible {
+  outline: 2px solid var(--color-orange);
+  outline-offset: 3px;
 }
 </style>

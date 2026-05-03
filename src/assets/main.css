@@ -45,7 +45,8 @@ body {
   font-size: 17px;
   line-height: 1.65;
   color: var(--color-text);
-  background-color: #faf9f7;
+  /* Aligné sur PageBackdrop (base) avant paint */
+  background-color: #f3efe8;
   -webkit-font-smoothing: antialiased;
 }
 

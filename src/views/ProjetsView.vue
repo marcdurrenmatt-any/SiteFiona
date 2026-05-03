@@ -35,7 +35,9 @@
 </template>
 
 <script setup>
-const projets = [
+import { publicAsset } from '@/utils/publicUrl'
+
+const projetsRaw = [
   {
     tag: 'Scène',
     title: 'Premières auditions',
@@ -85,6 +87,11 @@ const projets = [
       'Une fois par saison, une soirée informelle mêlant élèves, familles et morceaux du répertoire chanté ou pianistique — entrée libre et ambiance chaleureuse.',
   },
 ]
+
+const projets = projetsRaw.map((item) => ({
+  ...item,
+  image: publicAsset(item.image),
+}))
 </script>
 
 <style scoped>

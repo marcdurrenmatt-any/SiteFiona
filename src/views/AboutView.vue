@@ -15,13 +15,15 @@
         </ul>
       </div>
       <figure class="about__figure about__figure--hero">
-        <div
-          class="about__photo-slot about__photo-slot--portrait"
-          role="img"
-          aria-label="Emplacement pour une photo portrait"
-        >
-          <span class="about__photo-hint" aria-hidden="true">Portrait</span>
-          <span class="about__photo-caption">Remplacez ce bloc par une photo (format portrait, JPG ou WebP).</span>
+        <div class="about__photo-frame about__photo-frame--portrait">
+          <img
+            class="about__photo-img"
+            :src="aboutPortraitUrl"
+            alt="Portrait de Fiona Climent"
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+          />
         </div>
       </figure>
     </header>
@@ -49,13 +51,14 @@
 
     <div class="about__split">
       <figure class="about__figure about__figure--inline">
-        <div
-          class="about__photo-slot about__photo-slot--landscape"
-          role="img"
-          aria-label="Emplacement pour une photo paysage"
-        >
-          <span class="about__photo-hint" aria-hidden="true">Ambiance</span>
-          <span class="about__photo-caption">Idéal pour une photo de piano, de salle ou d’un moment de cours.</span>
+        <div class="about__photo-frame about__photo-frame--landscape">
+          <img
+            class="about__photo-img about__photo-img--ambiance"
+            :src="aboutAmbianceUrl"
+            alt="Ambiance musicale : piano et partitions, évoquant le conservatoire et le travail du répertoire"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       </figure>
       <div class="about__split-copy">
@@ -97,24 +100,38 @@
       </div>
 
       <figure class="about__figure about__figure--footer">
-        <div
-          class="about__photo-slot about__photo-slot--wide"
-          role="img"
-          aria-label="Emplacement pour une galerie ou une image panoramique"
-        >
-          <span class="about__photo-hint" aria-hidden="true">Bandeau</span>
-          <span class="about__photo-caption">
-            Optionnel : une image panoramique, une affiche de spectacle ou un montage de plusieurs clichés.
-          </span>
+        <div class="about__photo-frame about__photo-frame--banner">
+          <img
+            class="about__photo-img about__photo-img--banner"
+            :src="aboutBannerChoirUrl"
+            alt="Groupe de chanteurs en répétition ou en concert, illustrant le chant collectif et la scène"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       </figure>
 
       <div class="about__cta-row">
-        <RouterLink to="/contact" class="about__cta">Écrire pour un premier échange</RouterLink>
+        <RouterLink
+          to="/contact"
+          class="about__cta"
+          aria-label="Prendre contact pour un premier échange"
+        >
+          <span class="about__cta-label">Prendre contact</span>
+          <span class="about__cta-arrow" aria-hidden="true">→</span>
+        </RouterLink>
       </div>
     </div>
   </div>
 </template>
+
+<script setup>
+import { publicAsset } from '@/utils/publicUrl'
+
+const aboutPortraitUrl = publicAsset('/image/72825.webp')
+const aboutAmbianceUrl = publicAsset('/image/about-ambiance-conservatoire.jpg')
+const aboutBannerChoirUrl = publicAsset('/image/about-banner-choeur.jpg')
+</script>
 
 <style scoped>
 .about-page {
@@ -191,6 +208,57 @@
 
 .about__figure {
   margin: 0;
+}
+
+.about__photo-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(28, 25, 23, 0.09);
+  box-shadow: var(--shadow-md);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.about__photo-frame--portrait {
+  aspect-ratio: 3 / 4;
+  max-height: min(520px, 70vh);
+}
+
+.about__photo-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center 22%;
+}
+
+@media (max-width: 879px) {
+  .about__photo-frame--portrait {
+    max-height: none;
+    aspect-ratio: 16 / 11;
+  }
+}
+
+.about__photo-frame--landscape {
+  aspect-ratio: 16 / 10;
+  min-height: 180px;
+}
+
+.about__photo-img--ambiance {
+  object-position: center center;
+}
+
+.about__photo-frame--banner {
+  width: 100%;
+  max-width: min(820px, 100%);
+  margin-inline: auto;
+  aspect-ratio: 16 / 9;
+  min-height: 160px;
+  max-height: min(340px, 42vw);
+}
+
+.about__photo-img--banner {
+  object-position: center center;
 }
 
 .about__photo-slot {
@@ -383,12 +451,12 @@
 }
 
 .about__card {
+  width: 100%;
   background: var(--color-white);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
   padding: 2rem 1.5rem 2rem;
-  max-width: 880px;
 }
 
 @media (min-width: 640px) {
@@ -442,26 +510,68 @@
 
 .about__figure--footer {
   margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
 .about__cta-row {
   margin-top: 1.85rem;
+  display: flex;
+  justify-content: center;
 }
 
 .about__cta {
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.88rem 1.65rem 0.88rem 1.85rem;
+  min-height: 2.75rem;
+  border-radius: var(--radius-pill);
   font-weight: 600;
-  font-size: 0.95rem;
-  color: var(--color-orange);
-  padding: 0.5rem 0;
-  border-bottom: 2px solid rgba(255, 122, 0, 0.35);
+  font-size: 0.94rem;
+  letter-spacing: 0.01em;
+  color: #fff;
+  background: var(--color-orange);
+  text-decoration: none;
+  box-shadow:
+    0 4px 14px rgba(255, 122, 0, 0.32),
+    0 2px 6px rgba(28, 25, 23, 0.06);
   transition:
-    border-color 0.2s var(--ease-out),
-    color 0.2s var(--ease-out);
+    transform 0.2s var(--ease-out),
+    filter 0.2s var(--ease-out),
+    box-shadow 0.2s var(--ease-out),
+    gap 0.2s var(--ease-out);
+}
+
+.about__cta-label {
+  line-height: 1.2;
+}
+
+.about__cta-arrow {
+  font-size: 1.08rem;
+  font-weight: 500;
+  opacity: 0.92;
+  transition: transform 0.2s var(--ease-out);
 }
 
 .about__cta:hover {
-  border-bottom-color: var(--color-orange);
-  color: var(--color-text);
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+  gap: 0.62rem;
+  box-shadow:
+    0 8px 22px rgba(255, 122, 0, 0.35),
+    0 2px 8px rgba(28, 25, 23, 0.07);
+}
+
+.about__cta:hover .about__cta-arrow {
+  transform: translateX(3px);
+}
+
+.about__cta:focus-visible {
+  outline: 2px solid var(--color-orange);
+  outline-offset: 3px;
 }
 </style>

@@ -26,6 +26,24 @@ import CoursesCenterTree from '../components/CoursesCenterTree.vue'
               Initiation, lecture à vue, harmonisation et travail du répertoire classique ou contemporain. Les séances
               s’adaptent à votre niveau et à vos envies musicales.
             </p>
+            <div class="course-panel__schedule course-panel__schedule--piano" aria-label="Disponibilités cours de piano">
+              <p class="course-panel__schedule-title">Disponibilités</p>
+              <ul class="course-panel__schedule-list">
+                <li class="course-panel__schedule-row">
+                  <span class="course-panel__schedule-days">Mar · Jeu</span>
+                  <span class="course-panel__schedule-hours">14h – 19h</span>
+                </li>
+                <li class="course-panel__schedule-row">
+                  <span class="course-panel__schedule-days">Sam</span>
+                  <span class="course-panel__schedule-hours">10h – 13h</span>
+                </li>
+                <li class="course-panel__schedule-row">
+                  <span class="course-panel__schedule-days">Visio</span>
+                  <span class="course-panel__schedule-hours">Selon agenda</span>
+                </li>
+              </ul>
+              <p class="course-panel__schedule-note">Sous réserve de places · autres créneaux sur demande</p>
+            </div>
             <span class="course-panel__cta course-panel__cta--blue">
               En savoir plus
               <span class="course-panel__cta-arrow" aria-hidden="true">→</span>
@@ -49,6 +67,24 @@ import CoursesCenterTree from '../components/CoursesCenterTree.vue'
               Posture, respiration, justesse et interprétation — pour débutants comme pour chanteurs confirmés qui
               souhaitent affiner leur technique.
             </p>
+            <div class="course-panel__schedule course-panel__schedule--chant" aria-label="Disponibilités cours de chant">
+              <p class="course-panel__schedule-title">Disponibilités</p>
+              <ul class="course-panel__schedule-list">
+                <li class="course-panel__schedule-row">
+                  <span class="course-panel__schedule-days">Lun · Mer</span>
+                  <span class="course-panel__schedule-hours">16h – 20h</span>
+                </li>
+                <li class="course-panel__schedule-row">
+                  <span class="course-panel__schedule-days">Ven</span>
+                  <span class="course-panel__schedule-hours">10h – 12h</span>
+                </li>
+                <li class="course-panel__schedule-row">
+                  <span class="course-panel__schedule-days">Visio</span>
+                  <span class="course-panel__schedule-hours">Selon agenda</span>
+                </li>
+              </ul>
+              <p class="course-panel__schedule-note">Sous réserve de places · autres créneaux sur demande</p>
+            </div>
             <span class="course-panel__cta course-panel__cta--orange">
               En savoir plus
               <span class="course-panel__cta-arrow" aria-hidden="true">→</span>
@@ -377,6 +413,89 @@ import CoursesCenterTree from '../components/CoursesCenterTree.vue'
   font-size: 0.98rem;
   line-height: 1.72;
   color: var(--color-text-muted);
+}
+
+.course-panel__schedule {
+  align-self: stretch;
+  width: 100%;
+  flex-shrink: 0;
+  margin-top: 0.35rem;
+  padding: 0.78rem 0.85rem 0.82rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(28, 25, 23, 0.06);
+}
+
+.course-panel__schedule--piano {
+  background: linear-gradient(135deg, rgba(91, 127, 212, 0.09), rgba(116, 153, 241, 0.04));
+  border-color: rgba(91, 127, 212, 0.18);
+}
+
+.course-panel__schedule--chant {
+  background: linear-gradient(225deg, rgba(232, 115, 18, 0.08), rgba(245, 130, 22, 0.04));
+  border-color: rgba(232, 115, 18, 0.2);
+}
+
+.course-panel__schedule-title {
+  margin: 0 0 0.55rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.course-panel__schedule-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.38rem;
+}
+
+.course-panel__schedule-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.65rem;
+  font-size: 0.84rem;
+  line-height: 1.35;
+  color: var(--color-text);
+}
+
+.course-panel__schedule-days {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-text);
+}
+
+.course-panel__schedule-hours {
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.course-panel__schedule--piano .course-panel__schedule-hours {
+  color: rgba(55, 73, 133, 0.92);
+}
+
+.course-panel__schedule--chant .course-panel__schedule-hours {
+  color: rgba(140, 62, 10, 0.92);
+}
+
+.course-panel__schedule-note {
+  margin: 0.62rem 0 0;
+  padding-top: 0.55rem;
+  border-top: 1px solid rgba(28, 25, 23, 0.06);
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: var(--color-text-muted);
+}
+
+@media (min-width: 920px) {
+  .course-panel--chant .course-panel__schedule-row {
+    flex-direction: row-reverse;
+  }
 }
 
 .course-panel__cta {

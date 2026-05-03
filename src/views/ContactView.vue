@@ -155,18 +155,54 @@ function onSubmit(e) {
 }
 
 .contact-card__aside {
+  position: relative;
+  isolation: isolate;
   padding: 2rem 1.5rem;
-  background:
-    linear-gradient(155deg, rgba(255, 250, 245, 0.98) 0%, rgba(237, 233, 228, 0.95) 100%),
-    radial-gradient(circle at 22% 28%, rgba(255, 122, 0, 0.1), transparent 52%),
-    radial-gradient(circle at 78% 72%, rgba(116, 162, 255, 0.12), transparent 48%);
+  background-color: #f3efe8;
   border-bottom: 1px solid var(--color-border);
+}
+
+/* Même esprit que PageBackdrop : chaud → bronze, halo crème (sans bitmap) */
+.contact-card__aside::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 95% 85% at 40% 18%, rgba(255, 252, 246, 0.88) 0%, transparent 62%),
+    radial-gradient(ellipse 70% 65% at 88% 72%, rgba(109, 74, 61, 0.18) 0%, transparent 58%),
+    radial-gradient(ellipse 65% 55% at 8% 58%, rgba(184, 67, 76, 0.14) 0%, transparent 58%),
+    linear-gradient(
+      106deg,
+      rgba(198, 76, 72, 0.13) 0%,
+      rgba(245, 238, 228, 0.07) 42%,
+      rgba(166, 124, 82, 0.12) 100%
+    );
+  opacity: 0.95;
+}
+
+.contact-card__aside::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    155deg,
+    rgba(255, 255, 255, 0.72) 0%,
+    rgba(255, 252, 247, 0.52) 55%,
+    rgba(250, 246, 240, 0.68) 100%
+  );
+}
+
+.contact-card__aside > * {
+  position: relative;
+  z-index: 2;
 }
 
 @media (min-width: 800px) {
   .contact-card__aside {
     border-bottom: none;
-    border-right: 1px solid var(--color-border);
   }
 }
 

@@ -1,3 +1,7 @@
+<script setup>
+import { publicAsset } from '@/utils/publicUrl'
+</script>
+
 <template>
   <section class="hero">
     <div class="hero__content page-wrap">
@@ -18,7 +22,7 @@
       <div class="hero__visual">
         <img
           class="hero__emblem"
-          src="/image/g499.svg"
+          :src="publicAsset('/image/g499.svg')"
           width="250"
           height="494"
           alt="L’arbre des voix"

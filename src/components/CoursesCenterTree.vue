@@ -1,3 +1,7 @@
+<script setup>
+import { publicAsset } from '@/utils/publicUrl'
+</script>
+
 <template>
   <div class="center-tree">
     <span class="center-tree__glow center-tree__glow--piano" aria-hidden="true" />
@@ -5,7 +9,7 @@
     <div class="center-tree__figure">
       <img
         class="center-tree__img"
-        src="/image/g499.svg"
+        :src="publicAsset('/image/g499.svg')"
         alt=""
         width="250"
         height="494"
