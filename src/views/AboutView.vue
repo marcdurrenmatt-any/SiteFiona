@@ -1,0 +1,467 @@
+<template>
+  <div class="about-page page-wrap">
+    <header class="about__hero">
+      <div class="about__hero-text">
+        <p class="about__kicker">L’enseignement</p>
+        <h1 class="about__title">À propos</h1>
+        <p class="about__intro">
+          Pianiste et pédagogue, j’accompagne élèves et chanteurs avec une approche bienveillante, centrée sur l’écoute et la
+          musicalité.
+        </p>
+        <ul class="about__facts" aria-label="Informations rapides">
+          <li>Toulouse & visio</li>
+          <li>Tous niveaux</li>
+          <li>Cours sur mesure</li>
+        </ul>
+      </div>
+      <figure class="about__figure about__figure--hero">
+        <div
+          class="about__photo-slot about__photo-slot--portrait"
+          role="img"
+          aria-label="Emplacement pour une photo portrait"
+        >
+          <span class="about__photo-hint" aria-hidden="true">Portrait</span>
+          <span class="about__photo-caption">Remplacez ce bloc par une photo (format portrait, JPG ou WebP).</span>
+        </div>
+      </figure>
+    </header>
+
+    <section class="about__pillars" aria-labelledby="about-pillars-heading">
+      <h2 id="about-pillars-heading" class="about__section-title">Ce qui compte en cours</h2>
+      <ul class="about__pillar-list">
+        <li class="about__pillar">
+          <span class="about__pillar-icon" aria-hidden="true">◇</span>
+          <h3 class="about__pillar-title">Écoute</h3>
+          <p class="about__pillar-text">Adapter le tempo, le répertoire et les objectifs à votre rapport au son et au corps.</p>
+        </li>
+        <li class="about__pillar">
+          <span class="about__pillar-icon about__pillar-icon--blue" aria-hidden="true">◇</span>
+          <h3 class="about__pillar-title">Clarté</h3>
+          <p class="about__pillar-text">Des repères techniques simples pour progresser sans vous perdre dans le jargon.</p>
+        </li>
+        <li class="about__pillar">
+          <span class="about__pillar-icon" aria-hidden="true">◇</span>
+          <h3 class="about__pillar-title">Plaisir</h3>
+          <p class="about__pillar-text">La régularité naît du jeu : on travaille sérieusement, sans oublier pourquoi on est là.</p>
+        </li>
+      </ul>
+    </section>
+
+    <div class="about__split">
+      <figure class="about__figure about__figure--inline">
+        <div
+          class="about__photo-slot about__photo-slot--landscape"
+          role="img"
+          aria-label="Emplacement pour une photo paysage"
+        >
+          <span class="about__photo-hint" aria-hidden="true">Ambiance</span>
+          <span class="about__photo-caption">Idéal pour une photo de piano, de salle ou d’un moment de cours.</span>
+        </div>
+      </figure>
+      <div class="about__split-copy">
+        <h2 class="about__h2">Mon parcours</h2>
+        <p>
+          Formée au conservatoire et active sur scène, je relie pratique instrumentale, travail vocal et culture musicale.
+          Mon objectif : vous donner des repères solides tout en préservant votre singularité artistique.
+        </p>
+        <p class="about__split-note">
+          Envie d’en savoir plus sur les cours ?
+          <RouterLink to="/cours" class="about__inline-link">Voir l’offre pédagogique</RouterLink>
+        </p>
+      </div>
+    </div>
+
+    <blockquote class="about__quote">
+      <p>
+        « La musique se joue avec les mains, mais on l’entend d’abord avec les oreilles — et un peu avec le cœur. »
+      </p>
+    </blockquote>
+
+    <div class="about__card">
+      <div class="about__grid">
+        <div class="about__block">
+          <h2 class="about__h2">L’arbre des voix</h2>
+          <p>
+            Ce nom évoque la rencontre entre la voix et les touches du piano — racines communes, branches qui s’épanouissent
+            au fil des cours. Les séances allient rigueur et créativité, dans un cadre calme et motivant.
+          </p>
+        </div>
+        <div class="about__block about__block--highlight">
+          <h2 class="about__h2">Pour qui ?</h2>
+          <ul class="about__list">
+            <li>Enfants à partir de 7 ans, adolescents et adultes</li>
+            <li>Tous niveaux, du loisir au projet de concert</li>
+            <li>Cours individuels ; possibilité d’ateliers collectifs sur demande</li>
+          </ul>
+        </div>
+      </div>
+
+      <figure class="about__figure about__figure--footer">
+        <div
+          class="about__photo-slot about__photo-slot--wide"
+          role="img"
+          aria-label="Emplacement pour une galerie ou une image panoramique"
+        >
+          <span class="about__photo-hint" aria-hidden="true">Bandeau</span>
+          <span class="about__photo-caption">
+            Optionnel : une image panoramique, une affiche de spectacle ou un montage de plusieurs clichés.
+          </span>
+        </div>
+      </figure>
+
+      <div class="about__cta-row">
+        <RouterLink to="/contact" class="about__cta">Écrire pour un premier échange</RouterLink>
+      </div>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.about-page {
+  padding-bottom: 4rem;
+}
+
+.about__hero {
+  display: grid;
+  gap: 2rem;
+  align-items: start;
+  margin-bottom: 2.75rem;
+}
+
+@media (min-width: 880px) {
+  .about__hero {
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 38%);
+    gap: 2.75rem 3rem;
+    align-items: center;
+    margin-bottom: 3.25rem;
+  }
+}
+
+.about__kicker {
+  margin: 0 0 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.about__title {
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.85rem, 3vw, 2.35rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--color-text);
+}
+
+.about__intro {
+  margin: 0 0 1.25rem;
+  max-width: 52ch;
+  font-size: 1.08rem;
+  line-height: 1.65;
+  color: var(--color-text-muted);
+}
+
+.about__facts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-orange);
+}
+
+.about__facts li {
+  display: inline-flex;
+  align-items: center;
+}
+
+.about__facts li + li::before {
+  content: '·';
+  margin: 0 0.65rem;
+  color: rgba(87, 83, 78, 0.45);
+  font-weight: 500;
+}
+
+.about__figure {
+  margin: 0;
+}
+
+.about__photo-slot {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  border: 1px dashed rgba(28, 25, 23, 0.14);
+  background:
+    linear-gradient(145deg, rgba(116, 162, 255, 0.06), rgba(255, 122, 0, 0.05)),
+    repeating-linear-gradient(
+      -12deg,
+      transparent,
+      transparent 12px,
+      rgba(28, 25, 23, 0.03) 12px,
+      rgba(28, 25, 23, 0.03) 13px
+    );
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  padding: 1.5rem 1.25rem;
+  text-align: center;
+  min-height: 220px;
+}
+
+.about__photo-slot--portrait {
+  aspect-ratio: 3 / 4;
+  max-height: min(520px, 70vh);
+}
+
+.about__photo-slot--landscape {
+  aspect-ratio: 16 / 10;
+  min-height: 200px;
+}
+
+.about__photo-slot--wide {
+  aspect-ratio: 21 / 9;
+  min-height: 140px;
+}
+
+@media (max-width: 879px) {
+  .about__photo-slot--portrait {
+    max-height: none;
+    aspect-ratio: 16 / 11;
+  }
+}
+
+.about__photo-hint {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(87, 83, 78, 0.55);
+}
+
+.about__photo-caption {
+  max-width: 26ch;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--color-text-muted);
+}
+
+.about__section-title {
+  margin: 0 0 1.25rem;
+  font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+.about__pillars {
+  margin-bottom: 2.85rem;
+}
+
+.about__pillar-list {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 720px) {
+  .about__pillar-list {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.15rem;
+  }
+}
+
+.about__pillar {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.35rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.about__pillar-icon {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--color-orange);
+  line-height: 1;
+}
+
+.about__pillar-icon--blue {
+  color: var(--color-blue);
+}
+
+.about__pillar-title {
+  margin: 0 0 0.4rem;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+.about__pillar-text {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.62;
+  color: var(--color-text-muted);
+}
+
+.about__split {
+  display: grid;
+  gap: 1.75rem;
+  align-items: center;
+  margin-bottom: 2.5rem;
+}
+
+@media (min-width: 800px) {
+  .about__split {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: 2.25rem;
+    margin-bottom: 2.85rem;
+  }
+}
+
+.about__split-copy .about__h2 {
+  margin-top: 0;
+}
+
+.about__split-copy p {
+  margin: 0;
+  color: var(--color-text);
+  line-height: 1.72;
+  font-size: 0.98rem;
+}
+
+.about__split-copy p + p {
+  margin-top: 1rem;
+}
+
+.about__split-note {
+  font-size: 0.92rem !important;
+  color: var(--color-text-muted) !important;
+}
+
+.about__inline-link {
+  font-weight: 600;
+  color: var(--color-orange);
+  border-bottom: 1px solid rgba(255, 122, 0, 0.35);
+  transition:
+    color 0.2s var(--ease-out),
+    border-color 0.2s var(--ease-out);
+}
+
+.about__inline-link:hover {
+  color: var(--color-text);
+  border-bottom-color: var(--color-text);
+}
+
+.about__quote {
+  margin: 0 0 2.5rem;
+  padding: 1.35rem 0 1.35rem 1.35rem;
+  border-left: 4px solid var(--color-orange);
+  background: linear-gradient(90deg, var(--color-orange-soft), transparent 65%);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.about__quote p {
+  margin: 0;
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  font-style: italic;
+  line-height: 1.55;
+  color: var(--color-text);
+}
+
+.about__card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 2rem 1.5rem 2rem;
+  max-width: 880px;
+}
+
+@media (min-width: 640px) {
+  .about__card {
+    padding: 2.5rem 2.5rem 2.35rem;
+  }
+}
+
+.about__grid {
+  display: grid;
+  gap: 1.85rem;
+}
+
+@media (min-width: 720px) {
+  .about__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem 2.25rem;
+    align-items: start;
+  }
+}
+
+.about__h2 {
+  margin: 0 0 0.55rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-orange);
+}
+
+.about__block p {
+  margin: 0;
+  color: var(--color-text);
+  line-height: 1.7;
+  font-size: 0.98rem;
+}
+
+.about__block--highlight {
+  background: linear-gradient(135deg, var(--color-orange-soft), var(--color-blue-soft));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1.35rem 1.4rem;
+}
+
+.about__list {
+  margin: 0;
+  padding-left: 1.15rem;
+  color: var(--color-text);
+  line-height: 1.75;
+  font-size: 0.98rem;
+}
+
+.about__figure--footer {
+  margin-top: 2rem;
+}
+
+.about__cta-row {
+  margin-top: 1.85rem;
+}
+
+.about__cta {
+  display: inline-flex;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--color-orange);
+  padding: 0.5rem 0;
+  border-bottom: 2px solid rgba(255, 122, 0, 0.35);
+  transition:
+    border-color 0.2s var(--ease-out),
+    color 0.2s var(--ease-out);
+}
+
+.about__cta:hover {
+  border-bottom-color: var(--color-orange);
+  color: var(--color-text);
+}
+</style>
